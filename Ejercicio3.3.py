@@ -1,3 +1,5 @@
+"Escribe una calculadora que permita utilizar todas las operaciones con números enteros y de punto flotante."
+
 numero1 = float(input("Ingrese el primer número:"))
 numero2 = float(input("Ingrese el segundo número:"))
 

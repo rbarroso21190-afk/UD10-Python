@@ -1,3 +1,7 @@
+"""Lee una edad e indica si es mayor de edad o no.
+Realiza una variante para que nos diga si es mayor de edad, no es mayor de edad o tiene exactamente 18 años.
+Crea una función que lo haga y prueba que funciona en otro programa."""
+
 edad = input("Introduce tu edad:")
 
 print("Tienes {} años".format(edad))
