@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebXat Django</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
+        h1 { text-align: center; color: #1a1a1a; }
+        #chat-container { background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; }
+        
+        #chat-box { 
+            height: 400px; 
+            overflow-y: scroll; 
+            border: 1px solid #e1e4e8;
+            margin-bottom: 20px; 
+            padding: 15px; 
+            background: #fff;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column-reverse; /* Lo nuevo abajo */
+        }
+        
+        .mensaje { padding: 8px 10px; margin-bottom: 5px; border-bottom: 1px solid #f0f0f0; }
+        .meta { font-size: 0.8em; color: #888; margin-right: 5px; }
+        .usuario { font-weight: bold; color: #007bff; }
+        
+        .controles { display: flex; gap: 10px; }
+        input { padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        #usuario { width: 150px; }
+        #texto { flex-grow: 1; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>💬 WebXat de Clase</h1>
+        
+        <div id="chat-box">Cargando mensajes...</div>
+
+        <div class="controles">
+            <input type="text" id="usuario" placeholder="Tu Nombre" value="Alumno">
+            <input type="text" id="texto" placeholder="Escribe un mensaje...">
+            <button onclick="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        async function cargarMensajes() {
+            try {
+                const response = await fetch('/api/mensajes/');
+                const datos = await response.json();
+                
+                const chatBox = document.getElementById('chat-box');
+                chatBox.innerHTML = ''; 
+                
+                datos.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.className = 'mensaje';
+                    const fecha = new Date(msg.fecha).toLocaleTimeString();
+                    div.innerHTML = `<span class="meta">[${fecha}]</span> <span class="usuario">${msg.usuario}:</span> ${msg.contenido}`;
+                    chatBox.appendChild(div);
+                });
+            } catch (e) {
+                console.error("Error cargando mensajes:", e);
+            }
+        }
+
+        async function enviarMensaje() {
+            const usuario = document.getElementById('usuario').value;
+            const textoInput = document.getElementById('texto');
+            
+            if(!textoInput.value) return;
+
+            await fetch('/api/mensajes/', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-CSRFToken': getCookie('csrftoken') 
+                },
+                body: JSON.stringify({ usuario: usuario, contenido: textoInput.value })
+            });
+
+            textoInput.value = ''; 
+            cargarMensajes(); 
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Cargar mensajes cada 2 segundos automáticamente
+        setInterval(cargarMensajes, 2000);
+        cargarMensajes();
+    </script>
+</body>
+</html>
