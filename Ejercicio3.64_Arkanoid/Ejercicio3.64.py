@@ -29,7 +29,7 @@ GRIS = (100, 100, 100)
 reloj = pygame.time.Clock()
 
 # --- RUTAS ---
-RUTA_CARPETA = "/home/ciclesraulbarroso/Documentos/AO/UD10-Python/Arkanoid/Imagenes"
+RUTA_CARPETA = "/home/ciclesraulbarroso/Documentos/AO/UD10-Python/Ejercicio3.64_Arkanoid/Imagenes"
 RUTA_LOGO = os.path.join(RUTA_CARPETA, "Arkanoidlogo.png")
 RUTA_PALA = os.path.join(RUTA_CARPETA, "pala.svg")
 RUTA_BOLA = os.path.join(RUTA_CARPETA, "bola.svg")
