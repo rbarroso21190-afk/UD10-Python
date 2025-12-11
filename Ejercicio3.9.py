@@ -15,7 +15,7 @@ def multiplicar_lista(lista):
 
 entrada = input("Introduce una lista de números separados por comas:").split(",")
 
-lista = [int(num) for num in entrada]   # Convertir los elementos de la lista a enteros de uno en uno 
+lista = [int(num) for num in entrada]   
 
 print("La suma de la lista es:", sumar_lista(lista))
 print("La multiplicación de la lista es:", multiplicar_lista(lista))

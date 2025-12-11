@@ -8,4 +8,4 @@ def lenp(frase):
 
 frase = input("Introduce una frase:")
 resultado = lenp(frase)
-print(resultado)
+print("La longitud de la palabra es {}".format(resultado))

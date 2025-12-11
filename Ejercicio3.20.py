@@ -10,5 +10,6 @@ def conversor(sbin):
         else:
             dec = int(sbin, 2)
             print("El numero en decimal es:", dec)
+            break
 
 conversor(sbin)

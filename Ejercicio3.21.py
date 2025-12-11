@@ -13,7 +13,7 @@ x = []
 y = []
 z = []
 
-for a in range(4):
+for a in range(3):
     nombre = input("Introduce el nombre de la persona:")
     año_nac = int(input("En que año nacio {}?: ".format(nombre)))
     años_que_hara = año_act - año_nac
@@ -25,5 +25,5 @@ for a in range(4):
 print("\nAño actual {}".format(año_act))
 print("Nombre\t\tAño de nacimiento\tAños que hará este año")
 
-for a in range(4):
+for a in range(3):
     print("{}\t\t{}\t\t\t{}".format(x[a], y[a], z[a]))

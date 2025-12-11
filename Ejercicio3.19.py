@@ -11,14 +11,3 @@ def contar_mayusculas(cadena):
     return contador
 
 print("El número de letras mayúsculas en la cadena es:", contar_mayusculas(cadena))
-
-cadena = input("Introduce una cadena de texto:")
-
-def count_mayus(cadena):
-    count = 0
-    for char in cadena:
-        if char.isupper():
-            count += 1
-    return count
-
-print("El número de letras mayúsculas en la cadena es:", count_mayus(cadena))

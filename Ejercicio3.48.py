@@ -13,3 +13,4 @@ def elements_parells(lista):
         print(lista[i], end=" ")
 
 elements_parells(lista)
+print("")

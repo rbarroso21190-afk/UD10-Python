@@ -1,5 +1,6 @@
 "Escriu un programa que ens indiqui tots els números primers entre 1 i 100 i ens digui quants n’hi ha."
 
+contador = 0
 for x in range(1, 100):
     primo = True
     for i in range(2, int(x**0.5) + 1):
@@ -7,4 +8,6 @@ for x in range(1, 100):
             primo = False
             break
     if primo:
+        contador += 1
         print(x)
+print("Hay un total de {} numeros primos".format(contador))

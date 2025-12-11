@@ -4,3 +4,4 @@ numeros = 10
 while numeros != 0:
     print(numeros, end=" ")
     numeros -= 1
+print("")
